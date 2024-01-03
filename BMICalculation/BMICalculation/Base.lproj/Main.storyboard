@@ -30,12 +30,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-WP-E1u">
-                                <rect key="frame" x="74" y="383" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="몸무게는 어떻게 되시나요?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pze-u8-c4X">
                                 <rect key="frame" x="74" y="443" width="179" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -48,6 +42,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editingTextfield:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="UcQ-8N-W10"/>
+                                    <action selector="editingTextfieldInit:" destination="BYZ-38-t0r" eventType="editingChanged" id="vJX-kb-Zpw"/>
+                                </connections>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A1Q-Tc-Ihh">
                                 <rect key="frame" x="204" y="152" width="189" height="128"/>
@@ -58,6 +56,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="calculationBmiButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t7b-5V-MUY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFP-Mz-fkq">
                                 <rect key="frame" x="302" y="520" width="75" height="35"/>
@@ -79,20 +80,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rz5-WP-E1u">
+                                <rect key="frame" x="74" y="383" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="editingTextfield:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ZGi-cd-633"/>
+                                    <action selector="editingTextfieldInit:" destination="BYZ-38-t0r" eventType="editingChanged" id="AgB-3a-YYI"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="A5j-Oc-yNN" appends="YES" id="gxZ-Oh-Dha"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="heightLabel" destination="Mi5-cO-QBh" id="Has-BE-Hfx"/>
-                        <outlet property="heightTextfield" destination="rz5-WP-E1u" id="aOO-eE-i2Z"/>
-                        <outlet property="randomButton" destination="kFP-Mz-fkq" id="Qf3-00-EEb"/>
-                        <outlet property="resultButton" destination="Cdn-Qv-mPP" id="Khd-Ld-gGJ"/>
-                        <outlet property="weightLabel" destination="pze-u8-c4X" id="z6n-b3-tTf"/>
-                        <outlet property="weightTextfield" destination="Jea-tW-5gE" id="llh-Eh-qrz"/>
+                        <outlet property="heightTextField" destination="rz5-WP-E1u" id="Gfb-WJ-MBK"/>
+                        <outlet property="weightTextField" destination="Jea-tW-5gE" id="VOH-jH-EQ9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="A5j-Oc-yNN">
+                    <connections>
+                        <action selector="kebordHide:" destination="BYZ-38-t0r" id="2dx-S9-fBg"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="135.1145038167939" y="4.9295774647887329"/>
         </scene>
