@@ -105,6 +105,26 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculationBmiButton(_ sender: UIButton) {
+        let h : Double? = Double(heightTextField.text!)
+        let w : Double? = Double(weightTextField.text!)
+        let bmiOriginalValue : Double! // nil이 아닌 상태에서 들어오기 떄문에 반드시 nil이 아니다!
+        let bmiStringValue : String!
+        
+        print("height - \(h), weight - \(w)") // height 또는 weight든 지정된 범위 밖의 값이 들어올 경우 nil로 들어옴
+        
+        // height, weight 둘다 nil이 아닐 경우
+        if let h, let w { //let str = String(format: "%.2f", PI)
+            bmiOriginalValue = bmiCalculator(height: h, weight: w)
+            bmiStringValue = bmiCase(bmi: bmiOriginalValue)
+            print("bmi original value - \(bmiOriginalValue), bmi string value  - \(bmiStringValue)")
+            let alert = UIAlertController(title: "BMI 계산 결과", message: "\(String(format:"%.2f", bmiOriginalValue)) -  \(bmiStringValue!)", preferredStyle: .alert)
+            present(alert, animated: true)
+            
+        } else  { // 둘 중 하나가 nil일 경우
+            let alert = UIAlertController(title: "BMI를 계산할 수 없습니다!!!", message: "키와 몸무게 입력값을 다시 확인해주세요", preferredStyle: .alert)
+            present(alert, animated: true)
+        }
+        
     }
     
     
@@ -117,6 +137,22 @@ class ViewController: UIViewController {
         let bmiValue = w / (h * h)
         
         return bmiValue
+    }
+    
+    func bmiCase(bmi : Double) -> String {
+
+        switch bmi {
+        case 0..<18.5:
+            return ("저체중")
+        case 18.5..<25:
+            return ("정상")
+        case 25...29.9:
+            return ("과체중")
+        case 30...:
+            return ("비만")
+        default:
+            return "잘못된 입력값 입니다" // this is to shut up the compiler
+        }
     }
 }
 
