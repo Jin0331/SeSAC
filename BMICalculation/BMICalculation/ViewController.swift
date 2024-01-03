@@ -7,7 +7,7 @@
 
 /*
  이번 과제는 파고들면 파고들 수록 어려워지는 과제(?).. 간단하게 생각하면 금방 할 것 같다.
- (1) label은 변할 수 있는 가능성이 낮기때문에, xcode에서 inspector를 통해 작업
+ (1) label, image 등 시각적인 요소는 xcode에서 inspector를 통해 작업 (이번 과제는 로직이 중요함)
  (2) UITextField는 sender로 String Type이 들어온다
  */
 
@@ -24,16 +24,19 @@ class ViewController: UIViewController {
     // MARK :- IBOutlet
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var resultButton: UIButton!
+    @IBOutlet weak var eyeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        // View 관련
+        designTextfield(textField: heightTextField)
+        designTextfield(textField: weightTextField)
+        resultButton.layer.cornerRadius = 15
+        
+        // 로직 관련
         heightTextField.tag = 0 // 키 textfield의 tag 0
         weightTextField.tag = 1 // 키 textfield의 tag 1
-        
-        //        heightTextField.keyboardType = .default
-        heightTextField.keyboardType = .decimalPad // 숫자 패드를 기준으로 했기때문에, 문자가 들어올 가능성은 없지만...
-
     }
     
     // heightTextField, weightTextField 둘다 연결
@@ -53,44 +56,48 @@ class ViewController: UIViewController {
                 print(currentText)
                 if currentText / 100 >= MIN_HEIGHT && currentText / 100 <= MAX_HEIGHT { // 사용자가 cm 기준으로 입력 했을 때.정상 범위
                     sender.text = String(currentText / 100)
-                    sender.layer.borderWidth = 2
                     sender.layer.borderColor = UIColor.green.cgColor
                 } else if currentText >= MIN_HEIGHT && currentText <= MAX_HEIGHT  { // 사용자가 m 기준으로 입력했을 때. 정상 범위
                     sender.text = String(currentText)
-                    sender.layer.borderWidth = 2
                     sender.layer.borderColor = UIColor.green.cgColor
-
+                    
                 } else {
                     sleep(1) // 자기만.족!
                     sender.text = nil
-                    sender.placeholder = "지정된 범위를 벗어 났습니다."
-                    sender.layer.borderWidth = 2
+//                    sender.placeholder = "지정된 범위를 벗어 났습니다."
+                    //https://stackoverflow.com/questions/1340224/iphone-uitextfield-change-placeholder-text-color
+                    sender.attributedPlaceholder = NSAttributedString(string: "지정된 범위를 벗어 났습니다", attributes: [.foregroundColor: UIColor.red])
                     sender.layer.borderColor = UIColor.red.cgColor
                 }
             } else {
                 // nil. 즉, 문자 또는 공백 등 특수문자~
                 sleep(1)
                 sender.text = nil
-                sender.placeholder = "숫자를 입력해주세요."
-                sender.layer.borderWidth = 2
+//                sender.placeholder = "숫자를 입력해주세요."
+                sender.attributedPlaceholder = NSAttributedString(string: "숫자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
                 sender.layer.borderColor = UIColor.red.cgColor
             }
-        // tag == 1. weight 판단
+            // tag == 1. weight 판단
         } else if sender.tag == 1 { // weight
             if let currentText { //몸무게는 반드시 kg 단위로 들어오겠지?
                 if currentText >= MIN_WEIGHT && currentText <= MAX_WEIGHT {
                     sender.text = String(currentText)
-                    sender.layer.borderWidth = 2
                     sender.layer.borderColor = UIColor.green.cgColor
                 } else {
                     sleep(1) // 자기만.족!
                     sender.text = nil
-                    sender.placeholder = "지정된 범위를 벗어 났습니다."
-                    sender.layer.borderWidth = 2
+//                    sender.placeholder = "지정된 범위를 벗어 났습니다."
+                    sender.attributedPlaceholder = NSAttributedString(string: "지정된 범위를 벗어 났습니다", attributes: [.foregroundColor: UIColor.red])
                     sender.layer.borderColor = UIColor.red.cgColor
                 }
+            } else {
+                // nil. 즉, 문자 또는 공백 등 특수문자~
+                sleep(1)
+                sender.text = nil
+//                sender.placeholder = "숫자를 입력해주세요."
+                sender.attributedPlaceholder = NSAttributedString(string: "숫자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
+                sender.layer.borderColor = UIColor.red.cgColor
             }
-            
         }
     }
     
@@ -98,8 +105,7 @@ class ViewController: UIViewController {
     @IBAction func editingTextfieldInit(_ sender: UITextField) {
         // 다시 입력하면, 초기화
         sender.placeholder = nil
-        sender.layer.borderWidth = 2
-        sender.layer.borderColor = UIColor.white.cgColor
+        sender.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func calculationBmiButton(_ sender: UIButton) {
@@ -122,6 +128,7 @@ class ViewController: UIViewController {
             
         } else  { // 둘 중 하나가 nil일 경우
             let alert = UIAlertController(title: "BMI를 계산할 수 없습니다!!!", message: "키와 몸무게 입력값을 다시 확인해주세요", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .cancel))
             present(alert, animated: true)
         }
     }
@@ -130,9 +137,7 @@ class ViewController: UIViewController {
         // MAX_*를 이용해서 *_TextField에 바로 접근하기 떄문에, 간단하다
         // 소수점 제한은 걸어야 할 듯
         // 완료 border 포함
-        heightTextField.layer.borderWidth = 2
         heightTextField.layer.borderColor = UIColor.green.cgColor
-        weightTextField.layer.borderWidth = 2
         weightTextField.layer.borderColor = UIColor.green.cgColor
 
         heightTextField.text = String(format:"%.2f", Double.random(in: MIN_HEIGHT...MAX_HEIGHT))
@@ -142,8 +147,20 @@ class ViewController: UIViewController {
     @IBAction func kebordHide(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
+    // 비밀번호.. hide..... https://stackoverflow.com/questions/37873119/how-to-toggle-a-uitextfield-secure-text-entry-hide-password-in-swift 참고
+    @IBAction func passwordSecure(_ sender: UIButton) {
+        weightTextField.isSecureTextEntry.toggle()
+        weightTextField.isSelected.toggle()
+    }
     
     // MARK :- Function
+    func designTextfield(textField tf : UITextField) {
+        tf.layer.cornerRadius = 15
+        tf.layer.borderWidth = 1
+        tf.textAlignment = .center
+        tf.keyboardType = .decimalPad
+    }
+    
     func bmiCalculator(height h : Double, weight w: Double) -> Double {
         let bmiValue = w / (h * h)
         
