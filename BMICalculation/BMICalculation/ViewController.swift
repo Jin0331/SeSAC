@@ -9,7 +9,6 @@
  이번 과제는 파고들면 파고들 수록 어려워지는 과제(?).. 간단하게 생각하면 금방 할 것 같다.
  (1) label은 변할 수 있는 가능성이 낮기때문에, xcode에서 inspector를 통해 작업
  (2) UITextField는 sender로 String Type이 들어온다
- (3) tapGesture를 통해서, textfield의 editing did end가 실행됨!!! 후후
  */
 
 import UIKit
@@ -35,7 +34,6 @@ class ViewController: UIViewController {
         //        heightTextField.keyboardType = .default
         heightTextField.keyboardType = .decimalPad // 숫자 패드를 기준으로 했기때문에, 문자가 들어올 가능성은 없지만...
 
-        
     }
     
     // heightTextField, weightTextField 둘다 연결
@@ -117,16 +115,29 @@ class ViewController: UIViewController {
             bmiOriginalValue = bmiCalculator(height: h, weight: w)
             bmiStringValue = bmiCase(bmi: bmiOriginalValue)
             print("bmi original value - \(bmiOriginalValue), bmi string value  - \(bmiStringValue)")
+            
             let alert = UIAlertController(title: "BMI 계산 결과", message: "\(String(format:"%.2f", bmiOriginalValue)) -  \(bmiStringValue!)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .cancel))
             present(alert, animated: true)
             
         } else  { // 둘 중 하나가 nil일 경우
             let alert = UIAlertController(title: "BMI를 계산할 수 없습니다!!!", message: "키와 몸무게 입력값을 다시 확인해주세요", preferredStyle: .alert)
             present(alert, animated: true)
         }
-        
     }
     
+    @IBAction func rnadomTextfield(_ sender: UIButton) {
+        // MAX_*를 이용해서 *_TextField에 바로 접근하기 떄문에, 간단하다
+        // 소수점 제한은 걸어야 할 듯
+        // 완료 border 포함
+        heightTextField.layer.borderWidth = 2
+        heightTextField.layer.borderColor = UIColor.green.cgColor
+        weightTextField.layer.borderWidth = 2
+        weightTextField.layer.borderColor = UIColor.green.cgColor
+
+        heightTextField.text = String(format:"%.2f", Double.random(in: MIN_HEIGHT...MAX_HEIGHT))
+        weightTextField.text = String(format:"%.2f", Double.random(in: MIN_WEIGHT...MAX_WEIGHT))
+    }
     
     @IBAction func kebordHide(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -155,51 +166,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Alert
-////Object-C 함수
-//@objc func rightBarButtonClicked() {
-//    print("BarButton Clicked!!")
-//    
-//    //1. 컨텐츠
-//    let alert = UIAlertController(title: "기념일 저장", message: "날짜를 저장하시겠습니까?", preferredStyle: .actionSheet)
-//    
-//    //2. 버튼
-//    let firstButton = UIAlertAction(title: "버튼1", style: .cancel)
-//    let secondButton = UIAlertAction(title: "버튼2", style: .destructive)
-//    let thirdButton = UIAlertAction(title: "버튼3", style: .default)
-//    let fourthButton = UIAlertAction(title: "버튼4", style: .default)
-//    
-//    //3. 컨텐츠 + 버튼
-//    alert.addAction(firstButton)
-//    alert.addAction(secondButton)
-//    alert.addAction(thirdButton)
-//    alert.addAction(fourthButton)
-//    
-//    //4. 띄우기
-//    present(alert, animated: true)
-//    
-//}
