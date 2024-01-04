@@ -9,12 +9,21 @@
  이번 과제는 파고들면 파고들 수록 어려워지는 과제(?).. 간단하게 생각하면 금방 할 것 같다.
  (1) label, image 등 시각적인 요소는 xcode에서 inspector를 통해 작업 (이번 과제는 로직이 중요함)
  (2) UITextField는 sender로 String Type이 들어온다
+ 
+ //// 24-01-04 추가사항
+ (1)IQKeyboard추가
+ (2)Nickname field 추가
+  -> 조건 판단 추가. 글자수 2개 이상일때 정상입력
+ (3) designTextfield에서 UserDefault의 해당 값이 있는지 없는지 판단
+ (3) resultButton 누를 때, nickname, height, weight UserDefualt에 저장되도록
+  -> switch 사용
+ (4) UserDefault 초기화 Alert 추가
  */
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     // MARK :- Constant value
     let MIN_HEIGHT : Double = 0.5 // 신생아 평균
     let MAX_HEIGHT : Double = 2.89 // M 기준.'키 289cm' 세계 최장신 후보 등장(https://www.bbc.com/korean/international-64142805)
@@ -24,19 +33,26 @@ class ViewController: UIViewController {
     // MARK :- IBOutlet
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
+    @IBOutlet weak var nicknameTextfield: UITextField!
     @IBOutlet weak var resultButton: UIButton!
     @IBOutlet weak var eyeButton: UIButton!
+    @IBOutlet weak var refreshButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 로직 관련
+        heightTextField.tag = 0 // textfield의 tag 0
+        weightTextField.tag = 1 // textfield의 tag 1
+        nicknameTextfield.tag = 2 // textfield의 tag 2
+        
         // View 관련
         designTextfield(textField: heightTextField)
         designTextfield(textField: weightTextField)
+        designTextfield(textField: nicknameTextfield)
         resultButton.layer.cornerRadius = 15
         
-        // 로직 관련
-        heightTextField.tag = 0 // 키 textfield의 tag 0
-        weightTextField.tag = 1 // 키 textfield의 tag 1
+
     }
     
     // heightTextField, weightTextField 둘다 연결
@@ -44,7 +60,6 @@ class ViewController: UIViewController {
         // textfield에 입력이 끝난후, tapgesture가 실행될 때!!!
         // UItextField의 .text는 String type
         let currentText : Double? = Double(sender.text!)
-        
         
         // tag == 0. height 판단
         if sender.tag == 0 { // height
@@ -62,18 +77,14 @@ class ViewController: UIViewController {
                     sender.layer.borderColor = UIColor.green.cgColor
                     
                 } else {
-                    sleep(1) // 자기만.족!
                     sender.text = nil
-//                    sender.placeholder = "지정된 범위를 벗어 났습니다."
                     //https://stackoverflow.com/questions/1340224/iphone-uitextfield-change-placeholder-text-color
                     sender.attributedPlaceholder = NSAttributedString(string: "지정된 범위를 벗어 났습니다", attributes: [.foregroundColor: UIColor.red])
                     sender.layer.borderColor = UIColor.red.cgColor
                 }
             } else {
                 // nil. 즉, 문자 또는 공백 등 특수문자~
-                sleep(1)
                 sender.text = nil
-//                sender.placeholder = "숫자를 입력해주세요."
                 sender.attributedPlaceholder = NSAttributedString(string: "숫자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
                 sender.layer.borderColor = UIColor.red.cgColor
             }
@@ -84,18 +95,30 @@ class ViewController: UIViewController {
                     sender.text = String(currentText)
                     sender.layer.borderColor = UIColor.green.cgColor
                 } else {
-                    sleep(1) // 자기만.족!
                     sender.text = nil
-//                    sender.placeholder = "지정된 범위를 벗어 났습니다."
                     sender.attributedPlaceholder = NSAttributedString(string: "지정된 범위를 벗어 났습니다", attributes: [.foregroundColor: UIColor.red])
                     sender.layer.borderColor = UIColor.red.cgColor
                 }
             } else {
                 // nil. 즉, 문자 또는 공백 등 특수문자~
-                sleep(1)
                 sender.text = nil
-//                sender.placeholder = "숫자를 입력해주세요."
                 sender.attributedPlaceholder = NSAttributedString(string: "숫자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
+                sender.layer.borderColor = UIColor.red.cgColor
+            }
+        } else if sender.tag == 2 { // nickname
+            if let currentText = sender.text {
+                if currentText.count >= 2 {
+                    sender.text = currentText
+                    sender.layer.borderColor = UIColor.green.cgColor
+                } else {
+                    sender.text = nil
+                    sender.attributedPlaceholder = NSAttributedString(string: "문자를 두개 이상 입력해주세요", attributes: [.foregroundColor: UIColor.red])
+                    sender.layer.borderColor = UIColor.red.cgColor
+                }
+                
+            } else {
+                sender.text = nil
+                sender.attributedPlaceholder = NSAttributedString(string: "문자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
                 sender.layer.borderColor = UIColor.red.cgColor
             }
         }
@@ -111,13 +134,19 @@ class ViewController: UIViewController {
     @IBAction func calculationBmiButton(_ sender: UIButton) {
         let h : Double? = Double(heightTextField.text!)
         let w : Double? = Double(weightTextField.text!)
+        let n : String? = nicknameTextfield.text
         let bmiOriginalValue : Double! // nil이 아닌 상태에서 들어오기 떄문에 반드시 nil이 아니다!
         let bmiStringValue : String!
         
         print("height - \(h), weight - \(w)") // height 또는 weight든 지정된 범위 밖의 값이 들어올 경우 nil로 들어옴
         
-        // height, weight 둘다 nil이 아닐 경우
-        if let h, let w { //let str = String(format: "%.2f", PI)
+        // height, weight, nickname 셋다 nil이 아닐 경우
+        if let h, let w, let n {
+            // userDefault 저장
+            UserDefaults.standard.set(h, forKey: "height")
+            UserDefaults.standard.set(w, forKey: "weight")
+            UserDefaults.standard.set(n, forKey: "nickname")
+            
             bmiOriginalValue = bmiCalculator(height: h, weight: w)
             bmiStringValue = bmiCase(bmi: bmiOriginalValue)
             print("bmi original value - \(bmiOriginalValue), bmi string value  - \(bmiStringValue)")
@@ -139,10 +168,32 @@ class ViewController: UIViewController {
         // 완료 border 포함
         heightTextField.layer.borderColor = UIColor.green.cgColor
         weightTextField.layer.borderColor = UIColor.green.cgColor
-
+        
         heightTextField.text = String(format:"%.2f", Double.random(in: MIN_HEIGHT...MAX_HEIGHT))
         weightTextField.text = String(format:"%.2f", Double.random(in: MIN_WEIGHT...MAX_WEIGHT))
     }
+    
+    @IBAction func refreshButton(_ sender: UIButton) {
+        let alert = UIAlertController(title : "초기화", message: "입력된 값을 초기화 하시겠습니까?", preferredStyle: .alert)
+        
+        // alert button의 handler를 사용해서, 초기화를 해야하는 경우 Clouser를 이용하여 UserDefaults.standard.removeObject 호출
+        // 및 화면에서 바로 적용하도록, label.text 수정함. 근데, self를 사용하는 이유는???
+        let oneButton = UIAlertAction(title: "초기화", style: .default) { (action:UIAlertAction!) in
+            for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                UserDefaults.standard.removeObject(forKey: key.description)
+            }
+            self.nicknameTextfield.text = nil
+            self.heightTextField.text = nil
+            self.weightTextField.text = nil
+        }
+        let twoButton = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(oneButton)
+        alert.addAction(twoButton)
+        
+        present(alert, animated: true)
+    }
+    
     
     @IBAction func kebordHide(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
@@ -158,7 +209,38 @@ class ViewController: UIViewController {
         tf.layer.cornerRadius = 15
         tf.layer.borderWidth = 1.1
         tf.textAlignment = .center
-        tf.keyboardType = .decimalPad
+        if tf.tag == 2 {
+            tf.keyboardType = .default
+        } else {
+            tf.keyboardType = .decimalPad
+        }
+        
+        // switch를 이용한 UserDefualt 핸들링
+        // UserDefaults에 값이 존재하는 경우에만 값을 가져오고 아니면, .text = nil
+        switch tf.tag {
+        case 0 : // 키
+            var tmp = UserDefaults.standard.double(forKey: "height")
+            if tmp == 0 {
+                tf.text = nil
+            } else {
+                tf.text = String(UserDefaults.standard.double(forKey: "height"))
+            }
+        case 1 : // 몸무게
+            var tmp = UserDefaults.standard.double(forKey: "weight")
+            if tmp == 0 {
+                tf.text = nil
+            } else {
+                tf.text = String(UserDefaults.standard.double(forKey: "weight"))
+            }
+        case 2 : // 닉네임
+            if let t = tf.text {
+                tf.text = UserDefaults.standard.string(forKey: "nickname")
+            } else {
+                tf.text = nil
+            }
+        default:
+            print("error")
+        }
     }
     
     func bmiCalculator(height h : Double, weight w: Double) -> Double {
@@ -168,7 +250,7 @@ class ViewController: UIViewController {
     }
     
     func bmiCase(bmi : Double) -> String {
-
+        
         switch bmi {
         case 0..<18.5:
             return ("저체중")
