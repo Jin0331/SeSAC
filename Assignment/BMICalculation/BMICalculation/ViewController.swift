@@ -14,7 +14,9 @@
  (1)IQKeyboard추가
  (2)Nickname field 추가
   -> 조건 판단 추가. 글자수 2개 이상일때 정상입력
+ (3) designTextfield에서 UserDefault의 해당 값이 있는지 없는지 판단
  (3) resultButton 누를 때, nickname, height, weight UserDefualt에 저장되도록
+  -> switch 사용
  (4) UserDefault 초기화 Alert 추가
  */
 
@@ -38,16 +40,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 로직 관련
+        heightTextField.tag = 0 // textfield의 tag 0
+        weightTextField.tag = 1 // textfield의 tag 1
+        nicknameTextfield.tag = 2 // textfield의 tag 2
+        
         // View 관련
         designTextfield(textField: heightTextField)
         designTextfield(textField: weightTextField)
         designTextfield(textField: nicknameTextfield)
         resultButton.layer.cornerRadius = 15
         
-        // 로직 관련
-        heightTextField.tag = 0 // textfield의 tag 0
-        weightTextField.tag = 1 // textfield의 tag 1
-        nicknameTextfield.tag = 3 // textfield의 tag 3
+
     }
     
     // heightTextField, weightTextField 둘다 연결
@@ -100,7 +105,7 @@ class ViewController: UIViewController {
                 sender.attributedPlaceholder = NSAttributedString(string: "숫자를 입력해주세요", attributes: [.foregroundColor: UIColor.red])
                 sender.layer.borderColor = UIColor.red.cgColor
             }
-        } else if sender.tag == 3 { // nickname
+        } else if sender.tag == 2 { // nickname
             if let currentText = sender.text {
                 if currentText.count >= 2 {
                     sender.text = currentText
@@ -129,13 +134,19 @@ class ViewController: UIViewController {
     @IBAction func calculationBmiButton(_ sender: UIButton) {
         let h : Double? = Double(heightTextField.text!)
         let w : Double? = Double(weightTextField.text!)
+        let n : String? = nicknameTextfield.text
         let bmiOriginalValue : Double! // nil이 아닌 상태에서 들어오기 떄문에 반드시 nil이 아니다!
         let bmiStringValue : String!
         
         print("height - \(h), weight - \(w)") // height 또는 weight든 지정된 범위 밖의 값이 들어올 경우 nil로 들어옴
         
-        // height, weight 둘다 nil이 아닐 경우
-        if let h, let w { //let str = String(format: "%.2f", PI)
+        // height, weight, nickname 셋다 nil이 아닐 경우
+        if let h, let w, let n {
+            // userDefault 저장
+            UserDefaults.standard.set(h, forKey: "height")
+            UserDefaults.standard.set(w, forKey: "weight")
+            UserDefaults.standard.set(n, forKey: "nickname")
+            
             bmiOriginalValue = bmiCalculator(height: h, weight: w)
             bmiStringValue = bmiCase(bmi: bmiOriginalValue)
             print("bmi original value - \(bmiOriginalValue), bmi string value  - \(bmiStringValue)")
@@ -171,6 +182,9 @@ class ViewController: UIViewController {
             for key in UserDefaults.standard.dictionaryRepresentation().keys {
                 UserDefaults.standard.removeObject(forKey: key.description)
             }
+            self.nicknameTextfield.text = nil
+            self.heightTextField.text = nil
+            self.weightTextField.text = nil
         }
         let twoButton = UIAlertAction(title: "취소", style: .cancel)
         
@@ -195,10 +209,37 @@ class ViewController: UIViewController {
         tf.layer.cornerRadius = 15
         tf.layer.borderWidth = 1.1
         tf.textAlignment = .center
-        if tf.tag == 3 {
+        if tf.tag == 2 {
             tf.keyboardType = .default
         } else {
             tf.keyboardType = .decimalPad
+        }
+        
+        // switch를 이용한 UserDefualt 핸들링
+        // UserDefaults에 값이 존재하는 경우에만 값을 가져오고 아니면, .text = nil
+        switch tf.tag {
+        case 0 : // 키
+            var tmp = UserDefaults.standard.double(forKey: "height")
+            if tmp == 0 {
+                tf.text = nil
+            } else {
+                tf.text = String(UserDefaults.standard.double(forKey: "height"))
+            }
+        case 1 : // 몸무게
+            var tmp = UserDefaults.standard.double(forKey: "weight")
+            if tmp == 0 {
+                tf.text = nil
+            } else {
+                tf.text = String(UserDefaults.standard.double(forKey: "weight"))
+            }
+        case 2 : // 닉네임
+            if let t = tf.text {
+                tf.text = UserDefaults.standard.string(forKey: "nickname")
+            } else {
+                tf.text = nil
+            }
+        default:
+            print("error")
         }
     }
     
