@@ -156,7 +156,7 @@ class ViewController: UIViewController {
     // MARK :- Function
     func designTextfield(textField tf : UITextField) {
         tf.layer.cornerRadius = 15
-        tf.layer.borderWidth = 1
+        tf.layer.borderWidth = 1.1
         tf.textAlignment = .center
         tf.keyboardType = .decimalPad
     }
