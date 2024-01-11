@@ -14,6 +14,6 @@
 
   ##### Git Submodule로 관리
 
-* **009~011**(24-01-07~24-01-09) : [Table,Collection VC 연습](https://github.com/Jin0331/TableVCPractice)
+* **009~012**(24-01-07~24-01-11) : [Table,CollectionVC,Extension,Protocol,화면전환](https://github.com/Jin0331/TableVCPractice)
 
 
