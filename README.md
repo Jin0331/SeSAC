@@ -14,6 +14,7 @@
 
   ##### Git Submodule로 관리
 
-* **009~014**(24-01-07~24-01-15) : [Table,CollectionVC,Extension,Protocol,화면전환](https://github.com/Jin0331/TableVCPractice)
+* **009~015**(24-01-07~24-01-15) : [Table,CollectionVC,Extension,Protocol,화면전환](https://github.com/Jin0331/TableVCPractice)
 
+* **015**(24-01-015) : [MapView](https://github.com/Jin0331/MapViewPractice)
 
