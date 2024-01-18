@@ -29,6 +29,7 @@
 		04D634D52B58A628006B1EC9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D42B58A628006B1EC9 /* Book.swift */; };
 		04D634D72B58A63C006B1EC9 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D62B58A63C006B1EC9 /* Market.swift */; };
 		04D634D92B58A646006B1EC9 /* Lotto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D82B58A646006B1EC9 /* Lotto.swift */; };
+		DB9070C82B58C819006EF2EE /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		04D634D42B58A628006B1EC9 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		04D634D62B58A63C006B1EC9 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		04D634D82B58A646006B1EC9 /* Lotto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotto.swift; sourceTree = "<group>"; };
+		DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		0460CEC92B5611A500813E7B /* SeSAC4Network */ = {
 			isa = PBXGroup;
 			children = (
+				DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */,
 				0458C8872B58A3DE0085A69D /* Translation */,
 				0458C87B2B589AC00085A69D /* Book */,
 				0458C87A2B589ABB0085A69D /* Market */,
@@ -236,6 +239,7 @@
 			files = (
 				0460CECF2B5611A500813E7B /* ViewController.swift in Sources */,
 				0458C8812B589EDD0085A69D /* ReusableViewProtocol.swift in Sources */,
+				DB9070C82B58C819006EF2EE /* UserDefaultManager.swift in Sources */,
 				0460CEE22B56125F00813E7B /* LottoViewController.swift in Sources */,
 				04D634D32B58A617006B1EC9 /* Papago.swift in Sources */,
 				0460CEEC2B576D0700813E7B /* APIKey.swift in Sources */,

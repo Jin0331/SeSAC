@@ -55,10 +55,10 @@ class LanguageViewController: UIViewController {
                 
         switch type {
         case .source :
-            UserDefaults.standard.set(userSelect, forKey: "source")
+            UserDefaultManager.shared.source = userSelect
             navigationController?.popViewController(animated: true)
         case .target :
-            UserDefaults.standard.set(userSelect, forKey: "target")
+            UserDefaultManager.shared.target = userSelect
             dismiss(animated: true)
         }
         

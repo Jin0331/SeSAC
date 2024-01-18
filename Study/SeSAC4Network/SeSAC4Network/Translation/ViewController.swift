@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet var sourceTextView: UITextView!
     @IBOutlet var translateButton: UIButton!
     @IBOutlet var targetLabel: UILabel!
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,10 +30,10 @@ class ViewController: UIViewController {
         
         print("View will appear")
         
-        let sourceTitle = UserDefaults.standard.string(forKey: "source") ?? "ko"
+        let sourceTitle = UserDefaultManager.shared.source
         sourceButton.setTitle(sourceTitle, for: .normal)
         
-        let targetTitle = UserDefaults.standard.string(forKey: "target") ?? "ko"
+        let targetTitle = UserDefaultManager.shared.target
         targetButton.setTitle(targetTitle, for: .normal)
     }
     
@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .source
-        vc.userSelect = UserDefaults.standard.string(forKey: "source") ?? "ko"
+        vc.userSelect = UserDefaultManager().source
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .target
-        vc.userSelect = UserDefaults.standard.string(forKey: "target") ?? "ko"
+        vc.userSelect = UserDefaultManager().target
         
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
