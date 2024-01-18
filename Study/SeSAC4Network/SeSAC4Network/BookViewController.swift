@@ -34,7 +34,7 @@ class BookViewController: UIViewController {
         //만약 한글 검색이 안된다면 인코딩 처리
         let query = text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(query)&size=10&\(page)=1"
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(query)&size=10&page=\(page)"
         //sadfsaf
         let headers: HTTPHeaders = [
             "Authorization": APIKey.kakao
@@ -44,8 +44,15 @@ class BookViewController: UIViewController {
             
             switch response.result {
             case .success(let success):
-                self.list = success
-                self.tableView.reloadData()
+                
+                if self.page == 1 {
+                    self.list = success
+                } else {
+                    self.list.documents.append(contentsOf: success.documents)
+                }
+                
+//                self.list = success //// 여기서 append가 안 되는 상태였음
+                self.tableView.reloadData() //
             case .failure(let failure):
                 print(failure)
             }
@@ -81,11 +88,18 @@ extension BookViewController: UITableViewDelegate, UITableViewDataSource {
 // iOS10 이상
 extension BookViewController : UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        <#code#>
+        print("Prefetch \(indexPaths)")
+        
+        for item in indexPaths {
+            if list.documents.count - 3 == item.row {
+                page += 1 // page를 증가시킴!!!!!!!!
+                callRequest(text: searchBar.text!)
+            }
+        }
     }
     
     //취소 기능 : 직접 취소하는 기능을 구현해주어야 동작함
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        <#code#>
+        print("cancel \(indexPaths)")
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Book
 struct Book: Codable {
-    let documents: [Document]
+    var documents: [Document]
     let meta: Meta
 }
 
