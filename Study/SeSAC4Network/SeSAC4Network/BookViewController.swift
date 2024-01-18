@@ -17,6 +17,7 @@ class BookViewController: UIViewController {
     var list: Book = Book(documents: [], meta: Meta(isEnd: false, pageableCount: 0, totalCount: 0))
     
     var page = 1
+    var isEnd = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,8 @@ class BookViewController: UIViewController {
                 } else {
                     self.list.documents.append(contentsOf: success.documents)
                 }
+                
+                self.isEnd = success.meta.isEnd
                 
 //                self.list = success //// 여기서 append가 안 되는 상태였음
                 self.tableView.reloadData() //
@@ -91,7 +94,7 @@ extension BookViewController : UITableViewDataSourcePrefetching {
         print("Prefetch \(indexPaths)")
         
         for item in indexPaths {
-            if list.documents.count - 3 == item.row {
+            if list.documents.count - 3 == item.row && isEnd == false {
                 page += 1 // page를 증가시킴!!!!!!!!
                 callRequest(text: searchBar.text!)
             }
