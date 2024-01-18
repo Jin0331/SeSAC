@@ -10,7 +10,7 @@ import UIKit
 protocol ReusableViewProtocol {
     static var identifier: String { get }
 }
-
+s
 extension UITableViewCell: ReusableViewProtocol {
     static var identifier: String {
         return String(describing: self)
