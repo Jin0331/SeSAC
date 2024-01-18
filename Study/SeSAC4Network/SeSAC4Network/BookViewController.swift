@@ -53,9 +53,13 @@ class BookViewController: UIViewController {
                 }
                 
                 self.isEnd = success.meta.isEnd
-                
 //                self.list = success //// 여기서 append가 안 되는 상태였음
                 self.tableView.reloadData() //
+                
+                if self.page == 1 {
+                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+                }
+                
             case .failure(let failure):
                 print(failure)
             }
@@ -68,6 +72,10 @@ class BookViewController: UIViewController {
 extension BookViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+//        page = 1 // 또는
+        self.list.documents.removeAll() // 다 날리기
+                
         callRequest(text: searchBar.text!)
     }
     
