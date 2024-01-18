@@ -46,7 +46,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .source
-        vc.userSelect = UserDefaultManager().source
+        vc.userSelect = UserDefaultManager.shared.source
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .target
-        vc.userSelect = UserDefaultManager().target
+        vc.userSelect = UserDefaultManager.shared.target
         
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen

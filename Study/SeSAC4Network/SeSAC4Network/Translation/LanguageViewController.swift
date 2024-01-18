@@ -22,7 +22,7 @@ class LanguageViewController: UIViewController {
     // type이 source라면, UserDefault souce 정보가, taget이라면 UserDefault target 정보가 값전달이 될 예정
     var userSelect = "ko"
     
-    let data = [
+    private let data = [
         "ko": "한국어",
         "en": "영어",
         "ja": "일본어",
@@ -44,7 +44,7 @@ class LanguageViewController: UIViewController {
         
     }
     
-    @objc func saveButtonClicked() {
+    @objc private func saveButtonClicked() {
     /* if type == .source {
      navigationController?.popViewController(animated: true)
     } else {

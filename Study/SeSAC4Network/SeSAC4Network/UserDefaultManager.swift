@@ -8,10 +8,12 @@
 import Foundation
 
 // Singleton Pattern
-
+// 유일한 인스턴스를 하나만 생성
 class UserDefaultManager {
     
     static let shared = UserDefaultManager()
+    
+    private init(){  } // 초기화 구문에 대한 접근을 막음. 따라서 다른 인스턴스가 생성되지 못함.
     
     enum UDKey : String {
         case source
