@@ -26,10 +26,27 @@ class ViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        print("View will appear")
+        
+        let sourceTitle = UserDefaults.standard.string(forKey: "source") ?? "ko"
+        sourceButton.setTitle(sourceTitle, for: .normal)
+        
+        let targetTitle = UserDefaults.standard.string(forKey: "target") ?? "ko"
+        targetButton.setTitle(targetTitle, for: .normal)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+
+    }
+    
+    
     @objc func sourceButtonClicked() {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .source
+        vc.userSelect = UserDefaults.standard.string(forKey: "source") ?? "ko"
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -37,8 +54,10 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Language", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: LanguageViewController.identifier) as! LanguageViewController
         vc.type = .target
+        vc.userSelect = UserDefaults.standard.string(forKey: "target") ?? "ko"
         
         let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
     }
     

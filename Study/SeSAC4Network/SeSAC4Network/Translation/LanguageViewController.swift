@@ -10,8 +10,6 @@ import UIKit
 enum LanguageType {
     case source
     case target
-    
-    
 }
 
 class LanguageViewController: UIViewController {
@@ -19,7 +17,9 @@ class LanguageViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
 
     var type : LanguageType = .source // 0: 원본 언어, 1: 목적언어
-    
+    // 사용자가 선택한 언어에 대한 텍스트 컬러를 변경
+    // 다만, 첫 진입 시에는 기존에 저장된 언어로 세팅
+    // type이 source라면, UserDefault souce 정보가, taget이라면 UserDefault target 정보가 값전달이 될 예정
     var userSelect = "ko"
     
     let data = [
@@ -33,11 +33,6 @@ class LanguageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(data)
-        print(data.sorted{$0.key > $1.key})
-        print(data.sorted{$0.key < $1.key})
-        print(data.sorted{$0.value > $1.value})
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -84,14 +79,11 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "languageCell") else { return UITableViewCell() }
         
         // UserDefaults에 저장된 값에 따라 텍스트 컬러 변경
-        if let data = UserDefaults.standard.string(forKey: "source") {
-            if data == list[indexPath.row].key {
+            if userSelect == list[indexPath.row].key {
                 cell.textLabel?.textColor = .green
             } else {
                 cell.textLabel?.textColor = .black
             }
-        }
-        
         
         cell.textLabel?.text = list[indexPath.row].value
         
@@ -103,6 +95,7 @@ extension LanguageViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         userSelect = list[indexPath.row].key
+        tableView.reloadData()
         
     }
 }
