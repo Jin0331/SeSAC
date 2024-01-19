@@ -29,6 +29,8 @@
 		04D634D52B58A628006B1EC9 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D42B58A628006B1EC9 /* Book.swift */; };
 		04D634D72B58A63C006B1EC9 /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D62B58A63C006B1EC9 /* Market.swift */; };
 		04D634D92B58A646006B1EC9 /* Lotto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D82B58A646006B1EC9 /* Lotto.swift */; };
+		DB84D5562B59F63100AC0F49 /* OnboardingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB84D5552B59F63100AC0F49 /* OnboardingViewController.storyboard */; };
+		DB84D5582B59F66700AC0F49 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB84D5572B59F66700AC0F49 /* OnboardingViewController.swift */; };
 		DB9070C82B58C819006EF2EE /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		04D634D42B58A628006B1EC9 /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		04D634D62B58A63C006B1EC9 /* Market.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Market.swift; sourceTree = "<group>"; };
 		04D634D82B58A646006B1EC9 /* Lotto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotto.swift; sourceTree = "<group>"; };
+		DB84D5552B59F63100AC0F49 /* OnboardingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingViewController.storyboard; sourceTree = "<group>"; };
+		DB84D5572B59F66700AC0F49 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,6 +135,7 @@
 		0460CEC92B5611A500813E7B /* SeSAC4Network */ = {
 			isa = PBXGroup;
 			children = (
+				DB84D5542B59F61F00AC0F49 /* Onboarding */,
 				DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */,
 				0458C8872B58A3DE0085A69D /* Translation */,
 				0458C87B2B589AC00085A69D /* Book */,
@@ -154,6 +159,15 @@
 				0458C8802B589EDD0085A69D /* ReusableViewProtocol.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		DB84D5542B59F61F00AC0F49 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				DB84D5552B59F63100AC0F49 /* OnboardingViewController.storyboard */,
+				DB84D5572B59F66700AC0F49 /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +239,7 @@
 				0458C8862B58A3D50085A69D /* Language.storyboard in Resources */,
 				0460CED72B5611A600813E7B /* LaunchScreen.storyboard in Resources */,
 				0460CED42B5611A600813E7B /* Assets.xcassets in Resources */,
+				DB84D5562B59F63100AC0F49 /* OnboardingViewController.storyboard in Resources */,
 				0460CED22B5611A500813E7B /* Main.storyboard in Resources */,
 				0458C87F2B589E560085A69D /* BookTableViewCell.xib in Resources */,
 			);
@@ -240,6 +255,7 @@
 				0460CECF2B5611A500813E7B /* ViewController.swift in Sources */,
 				0458C8812B589EDD0085A69D /* ReusableViewProtocol.swift in Sources */,
 				DB9070C82B58C819006EF2EE /* UserDefaultManager.swift in Sources */,
+				DB84D5582B59F66700AC0F49 /* OnboardingViewController.swift in Sources */,
 				0460CEE22B56125F00813E7B /* LottoViewController.swift in Sources */,
 				04D634D32B58A617006B1EC9 /* Papago.swift in Sources */,
 				0460CEEC2B576D0700813E7B /* APIKey.swift in Sources */,

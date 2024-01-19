@@ -9,14 +9,40 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
-
+    var window: UIWindow? // <-여기에 VC올라감. nil -> storyboard init
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+
+        // 코드를 통해 앱 시작 화면 설정
+        guard let scene = (scene as? UIWindowScene) else { return }
+        
+        UserDefaults.standard.set(true, forKey: "UserState")
+        
+        // User state
+        /// User default는 bool을 Optional이 아님
+        let value = UserDefaults.standard.bool(forKey: "UserState")
+        print(value)
+        
+        
+        if !value {
+            window = UIWindow(windowScene: scene)
+            
+            let sb = UIStoryboard(name: OnboardingViewController.identifier, bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: OnboardingViewController.identifier) as! OnboardingViewController
+            let nav = UINavigationController(rootViewController: vc)
+            
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible() /// 해당 과정은 inpo.plist에서 바꾼것을 해당 과정으로 바꾼거임
+
+        } else {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: ViewController.identifier) as! ViewController
+            let nav = UINavigationController(rootViewController: vc)
+            
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+        }
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
