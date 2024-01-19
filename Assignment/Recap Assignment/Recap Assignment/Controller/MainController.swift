@@ -133,6 +133,8 @@ extension MainViewController {
         mainEmptyLabel.isHidden = searchKeywordList.count == 0 ? false : true
     }
     
+    // 화면 전환
+    //TODO: - 데이터 전달
     func screenTransition() {
         let sb = UIStoryboard(name: SearchResultController.identifier, bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: SearchResultController.identifier) as! SearchResultController
