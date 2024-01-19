@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 코드를 통해 앱 시작 화면 설정
         guard let scene = (scene as? UIWindowScene) else { return }
         
-        UserDefaults.standard.set(true, forKey: "UserState")
+        UserDefaults.standard.set(false, forKey: "UserState")
         
         // User state
         /// User default는 bool을 Optional이 아님
@@ -34,12 +34,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = nav
             window?.makeKeyAndVisible() /// 해당 과정은 inpo.plist에서 바꾼것을 해당 과정으로 바꾼거임
 
-        } else {
+        } else { // onbaord 아님
             let sb = UIStoryboard(name: "Main", bundle: nil)
-            let vc = sb.instantiateViewController(withIdentifier: ViewController.identifier) as! ViewController
-            let nav = UINavigationController(rootViewController: vc)
+            let vc = sb.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
+//            let nav = UINavigationController(rootViewController: vc)
             
-            window?.rootViewController = nav
+            window?.rootViewController = vc
             window?.makeKeyAndVisible()
         }
         

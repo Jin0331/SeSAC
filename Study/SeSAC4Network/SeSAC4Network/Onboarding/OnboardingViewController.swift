@@ -16,6 +16,15 @@ class OnboardingViewController: UIViewController {
 
     @IBAction func startButtonClicked(_ sender: UIButton) {
         
+        UserDefaults.standard.set(true, forKey: "UserState")
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "mainTabBarController") as! UITabBarController
+        
+        
+        vc.modalPresentationStyle = .fullScreen
+        
+        present(vc, animated: false)
         
         
     }

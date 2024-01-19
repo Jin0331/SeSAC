@@ -28,6 +28,23 @@ class BookViewController: UIViewController {
         tableView.register(UINib(nibName: BookTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: BookTableViewCell.identifier)
         tableView.rowHeight = 80
         searchBar.delegate = self
+        
+        let button = UIBarButtonItem(title: "처음부터시작하기", style: .plain, target: self, action: #selector(rightBarButtonItemClicked))
+        navigationItem.rightBarButtonItem = button
+    }
+    
+    @objc func rightBarButtonItemClicked() {
+        // 화면 전환이 아니라, 아예 처음처럼. 앱이 처음 실행한 것 처럼.
+        // seceneDelegate window vc rootview
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
+        let sb = UIStoryboard(name: "OnboardingViewController", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: OnboardingViewController.identifier) as! OnboardingViewController
+        let nav = UINavigationController(rootViewController: vc)
+        
+        sceneDelegate?.window?.rootViewController = nav
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
     
     func callRequest(text: String) {
