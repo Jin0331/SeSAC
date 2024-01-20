@@ -73,10 +73,7 @@ class BookViewController: UIViewController {
 //                self.list = success //// 여기서 append가 안 되는 상태였음
                 self.tableView.reloadData() //
                 
-                if self.page == 1 {
-                    self.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-                }
-                
+but
             case .failure(let failure):
                 print(failure)
             }
