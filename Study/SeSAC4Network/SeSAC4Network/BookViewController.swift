@@ -73,7 +73,6 @@ class BookViewController: UIViewController {
 //                self.list = success //// 여기서 append가 안 되는 상태였음
                 self.tableView.reloadData() //
                 
-but
             case .failure(let failure):
                 print(failure)
             }
