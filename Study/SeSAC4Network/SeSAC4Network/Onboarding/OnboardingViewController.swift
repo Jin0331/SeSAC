@@ -7,6 +7,16 @@
 
 import UIKit
 
+/*
+ 1. TimeInterval 60s 이상이어ㅑ 반복 가능
+ 2. Foreground에서는 알림이 뜨지 않는 것이 Default (옵션 추가해야됨)
+   - Foreground에서 알림을 받고 싶다면, Delegate
+ 3. Identifier는 64개로 제한
+ 4. 알림센터에 보이고 있는지, 사용자에게 전달되었는 지 알 수 없음. --> 정책적으로 불가능함
+ 5. 단, 사용자가 알림을 '클릭'했을 때만 확인가능
+ */
+
+
 class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -27,5 +37,25 @@ class OnboardingViewController: UIViewController {
         present(vc, animated: false)
         
     }
-    
+    @IBAction func notificationButtonClicked(_ sender: UIButton) {
+        
+        //1. 컨텐츠
+        let content = UNMutableNotificationContent()
+        content.title = "장바구니 확인해보셨나요?"
+        content.body = "찜한 상품을 구매해보세요!!"
+        content.badge = 100
+        
+        
+        
+        //2. 언제(트리거) - 몇분 몇초 또는 캘린더 또는 위치
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        //3. 요청
+        let request = UNNotificationRequest(identifier: "Jack", content: content, trigger: trigger)
+        
+        //4. iOS Sytem에 등록
+        UNUserNotificationCenter
+            .current()
+            .add(request)
+    }
 }
