@@ -63,31 +63,9 @@ class ViewController: UIViewController {
     
     @objc func translateButtonClicked() {
         
-        let url = "https://openapi.naver.com/v1/papago/n2mt"
-        //sadfsaf
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.clientID,
-            "X-Naver-Client-Secret": APIKey.clientSecret
-        ]
-        
-        let parameters: Parameters = [
-            "text": sourceTextView.text!,
-            "source": "ko",
-            "target": "en"
-        ]
-        
-        AF.request(url, method: .post, parameters: parameters, headers: headers).responseDecodable(of: Papago.self) { response in
+        TranslationAPIManager.shared.callRequest(text: sourceTextView.text) { result in
             
-            switch response.result {
-            case .success(let success):
-                print(success)
-                
-                self.targetLabel.text = success.message.result.translatedText
-                
-            case .failure(let failure):
-                print(failure)
-            }
-            
+            self.targetLabel.text = result
         }
         
         

@@ -23,6 +23,14 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showAlert(title: "삭제", message: "최근 검색어를 삭제하시겠습니까?", buttonTitle: "확인") {
+            print("최근 검색어가 삭제되었습니다!")
+        }
+    }
+    
 
     @IBAction func startButtonClicked(_ sender: UIButton) {
         
