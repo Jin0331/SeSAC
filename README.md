@@ -20,3 +20,4 @@
 
 * **016**(24-01-16) : [API](https://github.com/Jin0331/Network-Practice)
 
+* **Recap Assignment**(24-01-18~24-01-22) : [1차 종합 선물세트](https://github.com/Jin0331/SeSAC-Shopping)
