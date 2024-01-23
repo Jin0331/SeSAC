@@ -56,6 +56,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // 뱃지 제거
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        //사용자에게 이미 전달되어 있는 노티들을 제거(ex. 카톡)
+        UNUserNotificationCenter.current()
+            .removeAllDeliveredNotifications()
+        
+        // 사용자에게 전달이 될 예정인 노디들을 제거
+        UNUserNotificationCenter.current()
+            .removeAllPendingNotificationRequests()
+        
     }
 
     func sceneWillResignActive(_ scene: UIScene) {

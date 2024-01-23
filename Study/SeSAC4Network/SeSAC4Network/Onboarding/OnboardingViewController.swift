@@ -48,10 +48,15 @@ class OnboardingViewController: UIViewController {
         
         
         //2. 언제(트리거) - 몇분 몇초 또는 캘린더 또는 위치
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false) // 시간
+        
+        var component = DateComponents()
+        component.minute = 24
+        
+        let calendarTrigger = UNCalendarNotificationTrigger(dateMatching: component, repeats: false)
         
         //3. 요청
-        let request = UNNotificationRequest(identifier: "Jack", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "Jack", content: content, trigger: calendarTrigger)
         
         //4. iOS Sytem에 등록
         UNUserNotificationCenter
