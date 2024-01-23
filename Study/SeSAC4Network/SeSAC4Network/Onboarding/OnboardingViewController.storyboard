@@ -26,7 +26,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IVQ-H4-DlB">
-                                <rect key="frame" x="22" y="306" width="75" height="35"/>
+                                <rect key="frame" x="22" y="306" width="324" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -34,15 +34,26 @@
                                     <action selector="notificationButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="xaK-bN-F94"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXJ-y2-BnG">
+                                <rect key="frame" x="22" y="382" width="343" height="436"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="온보딩 화면" id="196-Nq-BZy"/>
+                    <connections>
+                        <outlet property="testButton" destination="IVQ-H4-DlB" id="Kbf-RE-L7n"/>
+                        <outlet property="testLabel" destination="dXJ-y2-BnG" id="NMB-Xk-5GH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1061.8320610687022" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="1057.2519083969464" y="4.9295774647887329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e9K-1w-V5M">

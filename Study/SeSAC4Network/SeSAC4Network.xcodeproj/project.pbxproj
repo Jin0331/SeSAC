@@ -31,6 +31,11 @@
 		04D634D92B58A646006B1EC9 /* Lotto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D634D82B58A646006B1EC9 /* Lotto.swift */; };
 		DB53F9F22B5F5BCC00CEFBA5 /* TranslationAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB53F9F12B5F5BCC00CEFBA5 /* TranslationAPIManager.swift */; };
 		DB53F9F42B5F5FF900CEFBA5 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB53F9F32B5F5FF900CEFBA5 /* UIViewExtension.swift */; };
+		DB53F9F82B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB53F9F52B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF ExtraBold.otf */; };
+		DB53F9F92B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB53F9F62B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Medium.otf */; };
+		DB53F9FA2B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB53F9F72B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Bold.otf */; };
+		DB53F9FC2B5F7EDD00CEFBA5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB53F9FB2B5F7EDD00CEFBA5 /* Constants.swift */; };
+		DB53F9FE2B5F852300CEFBA5 /* UIButton + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB53F9FD2B5F852300CEFBA5 /* UIButton + Extension.swift */; };
 		DB84D5562B59F63100AC0F49 /* OnboardingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB84D5552B59F63100AC0F49 /* OnboardingViewController.storyboard */; };
 		DB84D5582B59F66700AC0F49 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB84D5572B59F66700AC0F49 /* OnboardingViewController.swift */; };
 		DB9070C82B58C819006EF2EE /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */; };
@@ -61,6 +66,11 @@
 		04D634D82B58A646006B1EC9 /* Lotto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotto.swift; sourceTree = "<group>"; };
 		DB53F9F12B5F5BCC00CEFBA5 /* TranslationAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationAPIManager.swift; sourceTree = "<group>"; };
 		DB53F9F32B5F5FF900CEFBA5 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		DB53F9F52B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "넥슨 카트 고딕 OTF ExtraBold.otf"; sourceTree = "<group>"; };
+		DB53F9F62B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "넥슨 카트 고딕 OTF Medium.otf"; sourceTree = "<group>"; };
+		DB53F9F72B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "넥슨 카트 고딕 OTF Bold.otf"; sourceTree = "<group>"; };
+		DB53F9FB2B5F7EDD00CEFBA5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		DB53F9FD2B5F852300CEFBA5 /* UIButton + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton + Extension.swift"; sourceTree = "<group>"; };
 		DB84D5552B59F63100AC0F49 /* OnboardingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = OnboardingViewController.storyboard; sourceTree = "<group>"; };
 		DB84D5572B59F66700AC0F49 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		DB9070C72B58C819006EF2EE /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
@@ -155,6 +165,8 @@
 				0460CED82B5611A600813E7B /* Info.plist */,
 				0460CEEB2B576D0700813E7B /* APIKey.swift */,
 				DB53F9F32B5F5FF900CEFBA5 /* UIViewExtension.swift */,
+				DB53F9FB2B5F7EDD00CEFBA5 /* Constants.swift */,
+				DB53F9FD2B5F852300CEFBA5 /* UIButton + Extension.swift */,
 			);
 			path = SeSAC4Network;
 			sourceTree = "<group>";
@@ -162,6 +174,9 @@
 		0460CEEF2B576E2F00813E7B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				DB53F9F72B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Bold.otf */,
+				DB53F9F52B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF ExtraBold.otf */,
+				DB53F9F62B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Medium.otf */,
 				0458C8802B589EDD0085A69D /* ReusableViewProtocol.swift */,
 			);
 			path = Resource;
@@ -242,6 +257,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB53F9FA2B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Bold.otf in Resources */,
+				DB53F9F92B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF Medium.otf in Resources */,
+				DB53F9F82B5F7B9200CEFBA5 /* 넥슨 카트 고딕 OTF ExtraBold.otf in Resources */,
 				0458C8862B58A3D50085A69D /* Language.storyboard in Resources */,
 				0460CED72B5611A600813E7B /* LaunchScreen.storyboard in Resources */,
 				0460CED42B5611A600813E7B /* Assets.xcassets in Resources */,
@@ -273,7 +291,9 @@
 				0460CECB2B5611A500813E7B /* AppDelegate.swift in Sources */,
 				DB53F9F42B5F5FF900CEFBA5 /* UIViewExtension.swift in Sources */,
 				04D634D72B58A63C006B1EC9 /* Market.swift in Sources */,
+				DB53F9FC2B5F7EDD00CEFBA5 /* Constants.swift in Sources */,
 				04D634D12B58A459006B1EC9 /* LanguageViewController.swift in Sources */,
+				DB53F9FE2B5F852300CEFBA5 /* UIButton + Extension.swift in Sources */,
 				0460CECD2B5611A500813E7B /* SceneDelegate.swift in Sources */,
 				04D634D52B58A628006B1EC9 /* Book.swift in Sources */,
 				0460CEE62B56577B00813E7B /* LottoAPIManager.swift in Sources */,

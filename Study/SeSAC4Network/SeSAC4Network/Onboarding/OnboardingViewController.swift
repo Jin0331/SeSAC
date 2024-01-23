@@ -19,9 +19,19 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
 
+    @IBOutlet var testButton: UIButton!
+    @IBOutlet var testLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        configureButton()
+        testLabel.font = UIFont(name: "KartriderOTFExtraBold", size: 54)
+    }
+    
+    func configureButton() {
+            //iOS15 이상
+        
+        testButton.configuration = .sesacStyle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
