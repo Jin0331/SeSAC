@@ -18,4 +18,6 @@
 
 * **016**(24-01-16) : [API](https://github.com/Jin0331/Network-Practice)
 
-* **Recap Assignment**(24-01-18~24-01-22) : [1차 종합 선물세트](https://github.com/Jin0331/SeSAC-Shopping)
+* **Recap Assignment**(24-01-18~24-01-29) : [1차 종합 선물세트](https://github.com/Jin0331/SeSAC-Shopping)
+
+* **026**(24-01-30) : [TableView+CollectionView, Codebase](https://github.com/Jin0331/Media-Project)
