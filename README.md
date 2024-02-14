@@ -22,3 +22,4 @@
 
 * **026~031**(24-01-30~24-02-07) : [TableView+CollectionView, Codebase](https://github.com/Jin0331/Media-Project)
 * **Holidays Assignment**(24-02-11~24-02-13) : [설날 과제](https://github.com/Jin0331/OpenWeather)
+* **033**(24-02-15) : [값 전달 연습 - Closure, NotificationCenter](https://github.com/Jin0331/TODO-Project)
