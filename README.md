@@ -18,4 +18,4 @@
 
 * **026~031**(24-01-30~24-02-07) : [API Request 연습](https://github.com/Jin0331/Media-Project)
 * **Holidays Assignment**(24-02-11~24-02-13) : [설날 과제](https://github.com/Jin0331/OpenWeather)
-* **033**(24-02-15) : [값 전달 연습 - Closure, NotificationCenter](https://github.com/Jin0331/TODO-Project)
+* **033~36**(24-02-15~24-02-19) : [Realm 연습](https://github.com/Jin0331/TODO-Project)
